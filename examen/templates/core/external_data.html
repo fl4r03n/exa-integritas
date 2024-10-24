@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>External Data</title>
+</head>
+<body>
+    <h1>External Data</h1>
+    <ul>
+        {% for item in data %}
+            <li>{{ item.name }} - {{ item.value }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
