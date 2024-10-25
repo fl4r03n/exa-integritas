@@ -79,17 +79,19 @@ def pdf_list(request):
     return render(request, 'core/pdf_list.html', {'pdfs': pdfs})
 
 #cambiar color pdf
-from django.http import HttpResponse
-from .services.pdf_utils import invert_pdf_colors
 import os
+from django.http import HttpResponse
+from .models import PDFDocument
+from .services.pdf_utils import invert_pdf_colors
 
 def download_inverted_pdf(request, pdf_id):
     pdf = PDFDocument.objects.get(id=pdf_id)
     input_path = pdf.pdf_file.path
-    output_path = os.path.join('inverted_pdfs', os.path.basename(input_path))
+    output_path = os.path.join('media/inverted_pdfs', os.path.basename(input_path))
+    print(output_path)
     invert_pdf_colors(input_path, output_path)
+    
     with open(output_path, 'rb') as f:
-        response = HttpResponse(f.read(), content_type='/pdf')
+        response = HttpResponse(f.read(), content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="{os.path.basename(output_path)}"'
         return response
-

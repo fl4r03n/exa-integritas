@@ -1,6 +1,7 @@
 import fitz
 
 def invert_pdf_colors(input_path, output_path):
+    print("hola " + output_path)
     document = fitz.open(input_path)
     for page in document:
         pix = page.get_pixmap()
