@@ -88,7 +88,6 @@ def download_inverted_pdf(request, pdf_id):
     pdf = PDFDocument.objects.get(id=pdf_id)
     input_path = pdf.pdf_file.path
     output_path = os.path.join('media/inverted_pdfs', os.path.basename(input_path))
-    print(output_path)
     invert_pdf_colors(input_path, output_path)
     
     with open(output_path, 'rb') as f:

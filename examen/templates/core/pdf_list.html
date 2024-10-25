@@ -7,7 +7,7 @@
     <h1>PDF List</h1>
     <ul>
         {% for pdf in pdfs %}
-            <li>{{ pdf.title }} - <a href="{{ pdf.pdf_file.url }}">Download</a></li>
+            <li>{{ pdf.title }} - <a href="{{ pdf.pdf_file.url }}">Download</a> <a href="{% url 'download_inverted_pdf' pdf.pk %}">Invertido</a></li>
         {% endfor %}
     </ul>
 </body>
